@@ -329,9 +329,9 @@ workflow TopMedAligner {
       while read line
       do
         line_rg=$(echo ${dollar}{line} | cut -d ' ' -f 4- | sed -e "s/ /\\\t/g")
-        $(echo ${dollar}{line_rg})
+        echo ${dollar}{line_rg}
         input_path=$(echo ${dollar}{line} | cut -f 2 -d ' ')
-        $(echo ${dollar}{input_path})
+        echo ${dollar}{input_path}
         input_filename=$(basename ${dollar}{input_path})
         output_filename=$(basename ${dollar}{input_filename} ".fastq.gz").cram
 
