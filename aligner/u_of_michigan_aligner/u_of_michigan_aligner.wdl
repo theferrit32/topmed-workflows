@@ -337,6 +337,7 @@ workflow TopMedAligner {
 
         # Prepend the path to the input file with the Cromwell input directory
         input_path=${dollar}{input_file_location}"/"${dollar}{input_filename}
+        echo "input path full ${dollar}{input_path}"
 
         paired_flag=""
         if [[ ${dollar}{input_filename} =~ interleaved\.fastq\.gz$ ]]
