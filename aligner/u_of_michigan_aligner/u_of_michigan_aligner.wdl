@@ -331,20 +331,20 @@ workflow TopMedAligner {
         line_rg=$(echo ${dollar}{line} | cut -d ' ' -f 4- | sed -e "s/ /\\\t/g")
         echo ${dollar}{line_rg}
         input_path=$(echo ${dollar}{line} | cut -f 2 -d ' ')
-        echo "input path ${dollar}{input_path}"
+        #echo "input path ${dollar}{input_path}"
         input_filename=$(basename ${dollar}{input_path})
         output_filename=$(basename ${dollar}{input_filename} ".fastq.gz").cram
 
         # Prepend the path to the input file with the Cromwell input directory
         input_path=${dollar}{input_file_location}"/"${dollar}{input_filename}
-        echo "input path full ${dollar}{input_path}"
+        #echo "input path full ${dollar}{input_path}"
 
         paired_flag=""
         if [[ ${dollar}{input_filename} =~ interleaved\.fastq\.gz$ ]]
         then
           paired_flag="-p"
         fi
-        echo "paired_flag: ${dollar}{paired_flag}"
+        #echo "paired_flag: ${dollar}{paired_flag}"
 
         bwa mem -t 32 -K 100000000 -Y ${dollar}{paired_flag} -R ${dollar}{line_rg} ${ref_fasta} ${dollar}{input_path} | cat
         # samblaster -a --addMateTags | samtools view -@ 32 -T ${ref_fasta} -C -o ${dollar}{output_filename} -
