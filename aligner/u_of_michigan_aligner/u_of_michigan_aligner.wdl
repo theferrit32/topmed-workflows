@@ -344,8 +344,10 @@ workflow TopMedAligner {
         then
           paired_flag="-p"
         fi
+        echo "paired_flag: ${dollar}{paired_flag}"
 
-        bwa mem -t 32 -K 100000000 -Y ${dollar}{paired_flag} -R ${dollar}{line_rg} ${ref_fasta} ${dollar}{input_path} | samblaster -a --addMateTags | samtools view -@ 32 -T ${ref_fasta} -C -o ${dollar}{output_filename} -
+        bwa mem -t 32 -K 100000000 -Y ${dollar}{paired_flag} -R ${dollar}{line_rg} ${ref_fasta} ${dollar}{input_path} | cat
+        # samblaster -a --addMateTags | samtools view -@ 32 -T ${ref_fasta} -C -o ${dollar}{output_filename} -
       done <<< "$(tail -n +2 ${input_list_file})"
 
     >>>
