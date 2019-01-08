@@ -312,7 +312,7 @@ workflow TopMedAligner {
       # NOTE: Setting this will cause the pipeline to fail on Mac OS and Travis CI
       #       in some cases. It is commented out mainly so Travis CI will work.
       #       The failure was in samblaster
-      #set -o pipefail
+      set -o pipefail
       # cause a bash script to exit immediately when a command fails
       set -e
       # cause the bash shell to treat unset variables as an error and exit immediately
